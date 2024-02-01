@@ -1,0 +1,3 @@
+[console_scripts]
+prt = r2.printer:main
+
