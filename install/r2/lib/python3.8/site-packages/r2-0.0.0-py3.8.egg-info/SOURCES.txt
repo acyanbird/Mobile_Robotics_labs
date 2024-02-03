@@ -8,8 +8,12 @@ setup.py
 ../../build/r2/r2.egg-info/requires.txt
 ../../build/r2/r2.egg-info/top_level.txt
 ../../build/r2/r2.egg-info/zip-safe
+launch/node_launcher.launch.yaml
+launch/pubsub_launcher.launch.yaml
 r2/__init__.py
 r2/printer.py
+r2/publisher.py
+r2/subscriber.py
 resource/r2
 test/test_copyright.py
 test/test_flake8.py

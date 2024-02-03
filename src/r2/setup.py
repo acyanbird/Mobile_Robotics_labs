@@ -17,13 +17,13 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'prt = r2.printer:main'
+            'prt = r2.printer:main',
+            'pub = r2.publisher:main',
+            'sub = r2.subscriber:main'
         ],
     },
     data_files=[
         # ... Other data files
         # Include all launch files.
-        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))
-    ]
-
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))]
 )
