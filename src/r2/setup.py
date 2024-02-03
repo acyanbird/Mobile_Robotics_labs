@@ -1,3 +1,5 @@
+import os
+from glob import glob
 from setuptools import setup
 
 package_name = 'r2'
@@ -15,7 +17,13 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'prt = r2.printer:main'
-    ],
+            'prt = r2.printer:main'
+        ],
     },
+    data_files=[
+        # ... Other data files
+        # Include all launch files.
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))
+    ]
+
 )
