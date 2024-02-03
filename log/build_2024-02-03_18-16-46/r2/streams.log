@@ -1,0 +1,23 @@
+[0.935s] Invoking command in '/home/lucia/robot/ros_ws/src/r2': PYTHONPATH=/home/lucia/robot/ros_ws/build/r2/prefix_override:/home/lucia/robot/ros_ws/install/r2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/r2 build --build-base /home/lucia/robot/ros_ws/build/r2/build install --record /home/lucia/robot/ros_ws/build/r2/install.log --install-scripts $base/lib/r2 --single-version-externally-managed
+[1.116s] running egg_info
+[1.117s] writing ../../build/r2/r2.egg-info/PKG-INFO
+[1.117s] writing dependency_links to ../../build/r2/r2.egg-info/dependency_links.txt
+[1.117s] writing entry points to ../../build/r2/r2.egg-info/entry_points.txt
+[1.118s] writing requirements to ../../build/r2/r2.egg-info/requires.txt
+[1.118s] writing top-level names to ../../build/r2/r2.egg-info/top_level.txt
+[1.166s] reading manifest file '../../build/r2/r2.egg-info/SOURCES.txt'
+[1.166s] writing manifest file '../../build/r2/r2.egg-info/SOURCES.txt'
+[1.166s] running build
+[1.166s] running build_py
+[1.167s] running install
+[1.167s] running install_lib
+[1.169s] running install_data
+[1.169s] running install_egg_info
+[1.170s] removing '/home/lucia/robot/ros_ws/install/r2/lib/python3.8/site-packages/r2-0.0.0-py3.8.egg-info' (and everything under it)
+[1.171s] Copying ../../build/r2/r2.egg-info to /home/lucia/robot/ros_ws/install/r2/lib/python3.8/site-packages/r2-0.0.0-py3.8.egg-info
+[1.171s] running install_scripts
+[1.188s] Installing prt script to /home/lucia/robot/ros_ws/install/r2/lib/r2
+[1.188s] Installing pub script to /home/lucia/robot/ros_ws/install/r2/lib/r2
+[1.188s] Installing sub script to /home/lucia/robot/ros_ws/install/r2/lib/r2
+[1.188s] writing list of installed files to '/home/lucia/robot/ros_ws/build/r2/install.log'
+[1.211s] Invoked command in '/home/lucia/robot/ros_ws/src/r2' returned '0': PYTHONPATH=/home/lucia/robot/ros_ws/build/r2/prefix_override:/home/lucia/robot/ros_ws/install/r2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/r2 build --build-base /home/lucia/robot/ros_ws/build/r2/build install --record /home/lucia/robot/ros_ws/build/r2/install.log --install-scripts $base/lib/r2 --single-version-externally-managed

@@ -1,0 +1,11 @@
+launch:
+
+- node:
+    pkg: "r2"
+    exec: "pub"
+    name: "publisher"
+
+- node:
+    pkg: "r2"
+    exec: "sub"
+    name: "subscriber"
