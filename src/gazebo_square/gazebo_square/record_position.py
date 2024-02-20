@@ -19,7 +19,7 @@ class OdomSubscriber(Node):
     def listener_callback(self, msg):
         position = msg.pose.pose.position
         with open('position.txt', 'a') as f:
-            f.write(f'x: {position.x}, y: {position.y}\n')
+            f.write(f'x: {float(position.x)}, y: {float(position.y)}\n')
         rclpy.shutdown()
 
 
@@ -28,7 +28,7 @@ def main(args=None):
     odom_subscriber = OdomSubscriber()
     t = threading.Thread(target=rclpy.spin, args=(odom_subscriber,), daemon=True)
     t.start()
-    time.sleep(1)
+    time.sleep(0.2)
     os._exit(0)
 
 

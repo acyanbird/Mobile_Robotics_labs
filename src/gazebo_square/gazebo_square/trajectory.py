@@ -29,7 +29,7 @@ def main(args=None):
         for i in range(4 * fwd_time * frq):
             msg.linear.x = distance / fwd_time
             msg.angular.z = 0.0
-            pub.publish(msg)
+            pub.publish(msg)    # publish the message
 
             rate_node.get_logger().info('[Translation] Publishing: "%s"' % i)
             rate.sleep()  # the code will sleep to keep the frequency, in this case 10Hz
