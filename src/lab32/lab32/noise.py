@@ -24,9 +24,9 @@ def main(args=None):
     # running in a separate thread
     t.start()
 
-    frq = 100  # frequency: Hz
-    fwd_time = 20
-    rot_time = 20
+    frq = 10  # frequency: Hz
+    fwd_time = 8
+    rot_time = 5
 
     rate = rate_node.create_rate(frq)  # create a rate object with 10Hz, use rate.sleep() to keep the frequency
     pub = rate_node.create_publisher(Twist, 'cmd_vel', 10)
