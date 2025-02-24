@@ -1,0 +1,3445 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage[dvipsnames]{xcolor}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 1
+\boxbgcolor #babdb6
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "frame=lines,breaklines=true,bgcolor={gray!5},numbers=left,breaksymbol={}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+CS313 Lab Report
+\end_layout
+
+\begin_layout Author
+Betty Liu u2061245
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Lab 1
+\end_layout
+
+\begin_layout Section
+Task 1-2
+\end_layout
+
+\begin_layout Subsection
+Command to create the hello world package
+\end_layout
+
+\begin_layout Standard
+Inside ros_ws create src file, than create python package named r2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mkdir src && cd src
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 pkg create --build-type ament_python r2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For these 2 lines.
+ Create folder named src, and create a project named r2 that mainly using
+ python.
+\end_layout
+
+\begin_layout Standard
+Add python file
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd r2/r2
+\end_layout
+
+\begin_layout Plain Layout
+
+vim printer.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Code snippet showing the hello world program
+\end_layout
+
+\begin_layout Standard
+What inside printer.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#! /usr/bin/python
+\end_layout
+
+\begin_layout Plain Layout
+
+import rclpy
+\end_layout
+
+\begin_layout Plain Layout
+
+from rclpy.node import Node
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+rclpy.init(args=None)
+\end_layout
+
+\begin_layout Plain Layout
+
+node = Node('printer_node')  # Note that there should have no space in node
+ name
+\end_layout
+
+\begin_layout Plain Layout
+
+node.get_logger().info('HELLO WORLD - ROS2')
+\end_layout
+
+\begin_layout Plain Layout
+
+rclpy.spin(node)
+\end_layout
+
+\begin_layout Plain Layout
+
+node.destroy_node()
+\end_layout
+
+\begin_layout Plain Layout
+
+rclpy.shutdown()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Import rclpy, then create a node named printer_node.
+ Then create an info message HELLO WORLD - ROS2 into log of the node.
+ rclpy.spin(node) keep node running until it shutdown.
+ node.destroy_node() and rclpy.shutdown() destroy the node and shutdown tclpy.
+\end_layout
+
+\begin_layout Standard
+continue for 1.1, modify setup.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd ..
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+in section field entry_points, add
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+    'console_scripts': [
+\end_layout
+
+\begin_layout Plain Layout
+
+      'prt = r2.printer:main'
+\end_layout
+
+\begin_layout Plain Layout
+
+    ],
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+setuptools generate a command prt, when user input prt it runs printer.py
+ in r2 module.
+ In such cases, we don't need to explicitly define a main function.
+ By default, the printer file will be executed starting from the top.
+\end_layout
+
+\begin_layout Subsection
+Commands to run the program with ros2 run and ros2 launch
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+For ros2 run
+\end_layout
+
+\begin_layout Standard
+At ros_ws
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+colcon build --packages-select r2
+\end_layout
+
+\begin_layout Plain Layout
+
+source install/local_setup.bash
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 run r2 prt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Setup environment variables.
+ Using ros2 run to run a single node.
+ In this case, it runs executable named prt in package r2.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+For ros2 launch
+\end_layout
+
+\begin_layout Standard
+At ros_ws
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mkdir launch
+\end_layout
+
+\begin_layout Plain Layout
+
+vim launch/node_launcher.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Edit launcher file
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#! /usr/bin/python
+\end_layout
+
+\begin_layout Plain Layout
+
+import launch
+\end_layout
+
+\begin_layout Plain Layout
+
+import launch_ros.actions
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def generate_launch_description():
+\end_layout
+
+\begin_layout Plain Layout
+
+  return launch.LaunchDescription([
+\end_layout
+
+\begin_layout Plain Layout
+
+    launch_ros.actions.Node(
+\end_layout
+
+\begin_layout Plain Layout
+
+      package='r2',
+\end_layout
+
+\begin_layout Plain Layout
+
+      executable='prt',
+\end_layout
+
+\begin_layout Plain Layout
+
+      output='screen',
+\end_layout
+
+\begin_layout Plain Layout
+
+      name='custom_py_node_name'
+\end_layout
+
+\begin_layout Plain Layout
+
+    )
+\end_layout
+
+\begin_layout Plain Layout
+
+  ])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This code defines a launch file for launching a ROS node and execute prt
+ command, belonging to the r2 package.
+ Then specifies that the node's output will be printed to the screen.
+\end_layout
+
+\begin_layout Standard
+Configure environment
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+source install/local_setup.bash
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 launch launch/node_launcher.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using launch command and read node and parameters given by node_launcher.py
+\end_layout
+
+\begin_layout Section
+Task 1-3
+\end_layout
+
+\begin_layout Subsection
+Snippet of your pubsub_launcher.launch file
+\end_layout
+
+\begin_layout Standard
+I'm using yaml format, this file is under ros_ws/src/r2/launch.
+ File name is pubsub_launcher.launch.yaml
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+launch:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+- node:
+\end_layout
+
+\begin_layout Plain Layout
+
+    pkg: "r2"
+\end_layout
+
+\begin_layout Plain Layout
+
+    exec: "pub"
+\end_layout
+
+\begin_layout Plain Layout
+
+    name: "publisher"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+- node:
+\end_layout
+
+\begin_layout Plain Layout
+
+    pkg: "r2"
+\end_layout
+
+\begin_layout Plain Layout
+
+    exec: "sub"
+\end_layout
+
+\begin_layout Plain Layout
+
+    name: "subscriber"
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Define two nodes, named publisher and subscriber, both belonging to the
+ r2 package, and use the pub and sub commands, respectively.
+\end_layout
+
+\begin_layout Standard
+Add line in setup.py, now the setup.py is
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+from glob import glob
+\end_layout
+
+\begin_layout Plain Layout
+
+from setuptools import setup
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+package_name = 'r2'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+setup(
+\end_layout
+
+\begin_layout Plain Layout
+
+    name=package_name,
+\end_layout
+
+\begin_layout Plain Layout
+
+    version='0.0.0',
+\end_layout
+
+\begin_layout Plain Layout
+
+    packages=[package_name],
+\end_layout
+
+\begin_layout Plain Layout
+
+    install_requires=['setuptools'],
+\end_layout
+
+\begin_layout Plain Layout
+
+    zip_safe=True,
+\end_layout
+
+\begin_layout Plain Layout
+
+    maintainer='lucia',
+\end_layout
+
+\begin_layout Plain Layout
+
+    maintainer_email='acyanbird@gmail.com',
+\end_layout
+
+\begin_layout Plain Layout
+
+    description='TODO: Package description',
+\end_layout
+
+\begin_layout Plain Layout
+
+    license='TODO: License declaration',
+\end_layout
+
+\begin_layout Plain Layout
+
+    tests_require=['pytest'],
+\end_layout
+
+\begin_layout Plain Layout
+
+    entry_points={
+\end_layout
+
+\begin_layout Plain Layout
+
+        'console_scripts': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            'prt = r2.printer:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'pub = r2.publisher:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'sub = r2.subscriber:main'
+\end_layout
+
+\begin_layout Plain Layout
+
+        ],
+\end_layout
+
+\begin_layout Plain Layout
+
+    },
+\end_layout
+
+\begin_layout Plain Layout
+
+    data_files=[
+\end_layout
+
+\begin_layout Plain Layout
+
+        # ...
+ Other data files
+\end_layout
+
+\begin_layout Plain Layout
+
+        # Include all launch files.
+\end_layout
+
+\begin_layout Plain Layout
+
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch',
+ '*launch.[pxy][yma]*')))]
+\end_layout
+
+\begin_layout Plain Layout
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comparing to previous setup file, it generate 2 more command pub and sub.
+ They will run main function of publisher.py and subscriber.py 
+\end_layout
+
+\begin_layout Standard
+data_file means it will include all the file end with launch.py or launch.xml
+ or launch.yaml under folder launch in package.
+ Sowe can call it under r2.
+\end_layout
+
+\begin_layout Subsection
+Commands to launch it with ros2 launch
+\end_layout
+
+\begin_layout Standard
+Then compile and install them, go to ros_ws
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+colcon build --packages-select r2
+\end_layout
+
+\begin_layout Plain Layout
+
+source install/local_setup.bash
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 launch r2 pubsub_launcher.launch.yaml
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Build package r2, install environment variables and using yaml launch file.
+\end_layout
+
+\begin_layout Subsection
+Screenshot of your output
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-03 18-54-31.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We create 2 nodes publisher and subscriber, publisher create message hello
+ world with increasingorder number each 0.5 second.
+ Then subscriber get the message and echo them.
+\end_layout
+
+\begin_layout Part
+Lab 2
+\end_layout
+
+\begin_layout Section
+Task 2-1:
+\end_layout
+
+\begin_layout Standard
+Visualisation of the four nodes: turtlesim_node (A and B) and turtle_teleop_key
+ (C and D) with rqt_graph
+\end_layout
+
+\begin_layout Standard
+Run these commands in different terminals because we need them run simultaneousl
+y.
+ Remap is used to pass argument, which is node name to each node.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=bash,language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 run turtlesim turtlesim_node --ros-args --remap __node:=A
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 run turtlesim turtlesim_node --ros-args --remap __node:=B
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 run turtlesim turtle_teleop_key --ros-args --remap __name:=C
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 run turtlesim turtle_teleop_key --ros-args --remap __name:=D
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+rqt_graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-12 00-24-13.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task 2-2
+\end_layout
+
+\begin_layout Subsection
+Commands to teleport the turtlebot to a specified location and the screenshot
+ of the result
+\end_layout
+
+\begin_layout Standard
+Command to reset turtle
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 service call /reset std_srvs/srv/Empty
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Turle status
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-14 21-41-23.png
+	height 50pheight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Teleport using relative
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 service call /turtle1/teleport_relative turtlesim/srv/TeleportRelative
+ "{linear: 1}"
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-14 21-41-43.png
+	height 50pheight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Commands to change the background color to red using ros2 param and the
+ screenshot of the result
+\end_layout
+
+\begin_layout Standard
+Set node A and B seperately
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 param set /A background_b 0
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 param set /A background_g 0
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 param set /A background_r 255
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 param set /B background_b 0
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 param set /B background_g 0
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 param set /B background_r 255
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-14 21-57-11.png
+	height 50pheight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task 2-3
+\end_layout
+
+\begin_layout Subsection
+Code snippet to drive the turtlebot in circle with screenshot from RViz
+\end_layout
+
+\begin_layout Standard
+Keep the virtual Turtlebot in RViz windows.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 launch turtlebot3_fake_node turtlebot3_fake_node.launch.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-14 23-40-01.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-14 23-40-15.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Code
+\end_layout
+
+\begin_layout Standard
+For trajectory.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#! /usr/bin/env python
+\end_layout
+
+\begin_layout Plain Layout
+
+import rclpy
+\end_layout
+
+\begin_layout Plain Layout
+
+from rclpy.node import Node
+\end_layout
+
+\begin_layout Plain Layout
+
+from geometry_msgs.msg import Twist
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+class Mover(Node):
+\end_layout
+
+\begin_layout Plain Layout
+
+    def __init__(self):
+\end_layout
+
+\begin_layout Plain Layout
+
+        super().__init__('vel_publisher')
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.timer_ = self.create_timer(0.5, self.timer_callback)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.i = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.get_logger().info("Press CTRL + C to terminate")
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    def timer_callback(self):
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg = Twist()
+\end_layout
+
+\begin_layout Plain Layout
+
+        # Set the velocity here: using Twist.linear.x/y/z and/or Twist.angular.x/y/z
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg.linear.x = 2.0
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg.angular.z = 1.8
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.publisher_.publish(msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.get_logger().info('Publishing: "%s"' % msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(args=None):
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.init(args=args)
+\end_layout
+
+\begin_layout Plain Layout
+
+    mover = Mover()
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.spin(mover)
+\end_layout
+
+\begin_layout Plain Layout
+
+    mover.destroy_node()
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.shutdown()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For setup.py, modify entry_points section only
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+entry_points={
+\end_layout
+
+\begin_layout Plain Layout
+
+        'console_scripts': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            'move = move_turtlebot3.trajectory:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+        ],
+\end_layout
+
+\begin_layout Plain Layout
+
+    },
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Clearly describe your approach and explain your code
+\end_layout
+
+\begin_layout Standard
+Firstly, create a package named move_turtlebot3 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 pkg create --build-type ament_python move_turtlebot3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then fill in the skeleton provided by lab, named trajectory.py in same level
+ of __init__.py
+\end_layout
+
+\begin_layout Standard
+Firstly, the program run the main function.
+ It instantiate mover from class Mover.
+ Mover class is initialized with a publisher that publishes messages of
+ type Twist to the cmd_vel topic.
+ 
+\end_layout
+
+\begin_layout Standard
+timer_callback publishes messages of type Twist to the cmd_vel topic every
+ 0.5 second using create_timer function.
+ I changed the default value so it could move faster.
+ Set linear to 2 and angular to 1.8
+\end_layout
+
+\begin_layout Standard
+After Ctrl+C the process end.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+colcon build --packages-select move_turtlebot3
+\end_layout
+
+\begin_layout Plain Layout
+
+source install/setup.bash
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 run move_turtlebot3 move
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These commands run the robot.
+\end_layout
+
+\begin_layout Part
+Lab 3
+\end_layout
+
+\begin_layout Standard
+Launch turtlebot3 in gazbo first 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 launch turtlebot3_gazebo empty_world.launch.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task 3-1:
+\end_layout
+
+\begin_layout Subsection
+Code snippet to drive the turtlebot to move the square shape trajectory
+\end_layout
+
+\begin_layout Standard
+Create project
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 pkg create --build-type ament_python gazebo_square
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I create 2 nodes, one to move robot, the other one use to record the position
+\end_layout
+
+\begin_layout Standard
+For position record
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=no language,language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+import time
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import rclpy
+\end_layout
+
+\begin_layout Plain Layout
+
+from rclpy.node import Node
+\end_layout
+
+\begin_layout Plain Layout
+
+from nav_msgs.msg import Odometry
+\end_layout
+
+\begin_layout Plain Layout
+
+import threading
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+class OdomSubscriber(Node):
+\end_layout
+
+\begin_layout Plain Layout
+
+    def __init__(self):
+\end_layout
+
+\begin_layout Plain Layout
+
+        super().__init__('odom_subscriber')
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.subscription = self.create_subscription(
+\end_layout
+
+\begin_layout Plain Layout
+
+            Odometry,
+\end_layout
+
+\begin_layout Plain Layout
+
+            'odom',
+\end_layout
+
+\begin_layout Plain Layout
+
+            self.listener_callback,
+\end_layout
+
+\begin_layout Plain Layout
+
+            10)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    def listener_callback(self, msg):
+\end_layout
+
+\begin_layout Plain Layout
+
+        position = msg.pose.pose.position
+\end_layout
+
+\begin_layout Plain Layout
+
+        with open('position.txt', 'a') as f:
+\end_layout
+
+\begin_layout Plain Layout
+
+            f.write(f'x: {position.x}, y: {position.y}
+\backslash
+n')
+\end_layout
+
+\begin_layout Plain Layout
+
+        rclpy.shutdown()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(args=None):
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.init(args=args)
+\end_layout
+
+\begin_layout Plain Layout
+
+    odom_subscriber = OdomSubscriber()
+\end_layout
+
+\begin_layout Plain Layout
+
+    t = threading.Thread(target=rclpy.spin, args=(odom_subscriber,), daemon=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    t.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+    time.sleep(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    os._exit(0)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For robot movement, it also call position record whithin the program
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import subprocess
+\end_layout
+
+\begin_layout Plain Layout
+
+import rclpy
+\end_layout
+
+\begin_layout Plain Layout
+
+from geometry_msgs.msg import Twist
+\end_layout
+
+\begin_layout Plain Layout
+
+from math import pi
+\end_layout
+
+\begin_layout Plain Layout
+
+import threading
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+distance = 4.0
+\end_layout
+
+\begin_layout Plain Layout
+
+angle = pi / 2.0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(args=None):
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.init(args=args)
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node = rclpy.create_node('rate_node')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    t = threading.Thread(target=rclpy.spin, args=(rate_node,), daemon=True)
+  # the rate rely on the spin function
+\end_layout
+
+\begin_layout Plain Layout
+
+    # running in a separate thread
+\end_layout
+
+\begin_layout Plain Layout
+
+    t.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    frq = 10  # frequency: Hz
+\end_layout
+
+\begin_layout Plain Layout
+
+    fwd_time = 8
+\end_layout
+
+\begin_layout Plain Layout
+
+    rot_time = 5
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate = rate_node.create_rate(frq)  # create a rate object with 10Hz,
+ use rate.sleep() to keep the frequency
+\end_layout
+
+\begin_layout Plain Layout
+
+    pub = rate_node.create_publisher(Twist, 'cmd_vel', 10)
+\end_layout
+
+\begin_layout Plain Layout
+
+    try:
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg = Twist()
+\end_layout
+
+\begin_layout Plain Layout
+
+        subprocess.run(["ros2", "service", "call", "/reset_simulation", "std_srvs
+/srv/Empty"])  # reset the simulation
+\end_layout
+
+\begin_layout Plain Layout
+
+        subprocess.run(['ros2', 'run', 'gazebo_square', 'position'])
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i in range(4 * fwd_time * frq):
+\end_layout
+
+\begin_layout Plain Layout
+
+            msg.linear.x = distance / fwd_time
+\end_layout
+
+\begin_layout Plain Layout
+
+            msg.angular.z = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+            pub.publish(msg)    # publish the message
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            rate_node.get_logger().info('[Translation] Publishing: "%s"' %
+ i)
+\end_layout
+
+\begin_layout Plain Layout
+
+            rate.sleep()  # the code will sleep to keep the frequency, in
+ this case 10Hz
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            if (i + 1) % (fwd_time * frq) == 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+                rate.sleep()
+\end_layout
+
+\begin_layout Plain Layout
+
+                subprocess.run(['ros2', 'run', 'gazebo_square', 'position'])
+\end_layout
+
+\begin_layout Plain Layout
+
+                for _ in range(rot_time * frq):
+\end_layout
+
+\begin_layout Plain Layout
+
+                    msg.linear.x = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+                    msg.angular.z = angle / rot_time
+\end_layout
+
+\begin_layout Plain Layout
+
+                    pub.publish(msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+                    rate_node.get_logger().info('[Rotation] Publishing: "%s"'
+ % i)
+\end_layout
+
+\begin_layout Plain Layout
+
+                    rate.sleep()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg.linear.x = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg.angular.z = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+        pub.publish(msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+        rate_node.get_logger().info('[Stop] Publishing: "%s"' % i)
+\end_layout
+
+\begin_layout Plain Layout
+
+        with open('position.txt', 'a') as f:
+\end_layout
+
+\begin_layout Plain Layout
+
+            f.write("after finished the square
+\backslash
+n")
+\end_layout
+
+\begin_layout Plain Layout
+
+        subprocess.run(['ros2', 'run', 'gazebo_square', 'position'])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    except KeyboardInterrupt:
+\end_layout
+
+\begin_layout Plain Layout
+
+        pass
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node.destroy_node()
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.shutdown()
+\end_layout
+
+\begin_layout Plain Layout
+
+    t.join()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then add the entry point at setup.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=no language,language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+entry_points={
+\end_layout
+
+\begin_layout Plain Layout
+
+        'console_scripts': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            'move=gazebo_square.trajectory:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'position=gazebo_square.record_position:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+        ],
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Build and run the project
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+colcon build --packages-select gazebo_square
+\end_layout
+
+\begin_layout Plain Layout
+
+source install/setup.bash
+\end_layout
+
+\begin_layout Plain Layout
+
+ros2 run gazebo_square move
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Clearly describe your approach and explain your code
+\end_layout
+
+\begin_layout Standard
+In trajectory.py, I utilized the provided structure from the lab.
+ First, it resets the simulation.
+ Then, the robot moves forward 4 meters and turns 90 degrees, repeating
+ this process 4 times.
+\end_layout
+
+\begin_layout Standard
+To enhance accuracy, I slowed down the speed.
+ I adjusted msg.linear.x to distance / fwd_time to slow down the speed to
+ 0.5m/s.
+ When it reaches the forward time (i increments by 100 per second), it stops
+ and starts turning.
+ After executing 4 times, the loop stops, and the robot speed and rotation
+ are set to 0 again.
+\end_layout
+
+\begin_layout Standard
+For position recording, the node subscribes to the odom topic and retrieves
+ the pose once, adding it to the position.txt file.
+ It creates a thread to execute, waits for 0.2 seconds, and exits.
+ It only records the position once, right after writing into the txt file
+ with rclpy.shutdown().
+ trajectory.py calls this node every time it needs to record the position.
+\end_layout
+
+\begin_layout Subsection
+Screenshots showing that your robot can visit the four waypoints (with reasonabl
+e errors, e.g.
+ <1m).
+\end_layout
+
+\begin_layout Standard
+Final output in position.txt
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+x: 7.382641119197687e-05, y: -3.2001355556987805e-07
+\end_layout
+
+\begin_layout Plain Layout
+
+x: 4.320247894872797, y: 0.018901195616114114
+\end_layout
+
+\begin_layout Plain Layout
+
+x: 4.7065540745287615, y: 4.216054346164607
+\end_layout
+
+\begin_layout Plain Layout
+
+x: 0.520388013529021, y: 4.875602328810379
+\end_layout
+
+\begin_layout Plain Layout
+
+x: -0.27317267205084467, y: 0.7377587102866461
+\end_layout
+
+\begin_layout Plain Layout
+
+after finished the square
+\end_layout
+
+\begin_layout Plain Layout
+
+x: -0.30583353582438483, y: 0.5058357508299174
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The screen shot
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/lucia/Pictures/Screenshot from 2024-02-20 17-46-38.png
+	width 70page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task 3-2:
+\end_layout
+
+\begin_layout Subsection
+Code to simulate motion noise and explain how it works
+\end_layout
+
+\begin_layout Standard
+Create project
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 pkg create --build-type ament_python lab32
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Use most of the codes from previous task but import parameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=no language,language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import subprocess
+\end_layout
+
+\begin_layout Plain Layout
+
+import rclpy
+\end_layout
+
+\begin_layout Plain Layout
+
+from geometry_msgs.msg import Twist
+\end_layout
+
+\begin_layout Plain Layout
+
+from math import pi
+\end_layout
+
+\begin_layout Plain Layout
+
+import threading
+\end_layout
+
+\begin_layout Plain Layout
+
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+distance = 4.0
+\end_layout
+
+\begin_layout Plain Layout
+
+angle = pi / 2.0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(args=None):
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.init(args=args)
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node = rclpy.create_node('rate_node')
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node.declare_parameter('l_noise', 0.0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node.declare_parameter('a_noise', 0.0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node.declare_parameter('file_name', 'position.txt')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    linear_noise = rate_node.get_parameter('l_noise').get_parameter_value().double_
+value
+\end_layout
+
+\begin_layout Plain Layout
+
+    angular_noise = rate_node.get_parameter('a_noise').get_parameter_value().double
+_value
+\end_layout
+
+\begin_layout Plain Layout
+
+    file_name = rate_node.get_parameter('file_name').get_parameter_value().string_v
+alue
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    t = threading.Thread(target=rclpy.spin, args=(rate_node,), daemon=True)
+  # the rate rely on the spin function
+\end_layout
+
+\begin_layout Plain Layout
+
+    # running in a separate thread
+\end_layout
+
+\begin_layout Plain Layout
+
+    t.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    frq = 10  # frequency: Hz
+\end_layout
+
+\begin_layout Plain Layout
+
+    fwd_time = 8
+\end_layout
+
+\begin_layout Plain Layout
+
+    rot_time = 5
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate = rate_node.create_rate(frq)  # create a rate object with 10Hz,
+ use rate.sleep() to keep the frequency
+\end_layout
+
+\begin_layout Plain Layout
+
+    pub = rate_node.create_publisher(Twist, 'cmd_vel', 10)
+\end_layout
+
+\begin_layout Plain Layout
+
+    try:
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg = Twist()
+\end_layout
+
+\begin_layout Plain Layout
+
+        subprocess.run(["ros2", "service", "call", "/reset_simulation", "std_srvs
+/srv/Empty"])  # reset the simulation
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i in range(4 * fwd_time * frq):
+\end_layout
+
+\begin_layout Plain Layout
+
+            noise = np.random.normal(0, linear_noise)
+\end_layout
+
+\begin_layout Plain Layout
+
+            msg.linear.x = distance / fwd_time + noise
+\end_layout
+
+\begin_layout Plain Layout
+
+            msg.angular.z = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+            pub.publish(msg)    # publish the message
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            rate_node.get_logger().info('[Translation] Publishing: "%s"' %
+ i)
+\end_layout
+
+\begin_layout Plain Layout
+
+            rate.sleep()  # the code will sleep to keep the frequency, in
+ this case 10Hz
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            if (i + 1) % (fwd_time * frq) == 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+                rate.sleep()
+\end_layout
+
+\begin_layout Plain Layout
+
+                for _ in range(rot_time * frq):
+\end_layout
+
+\begin_layout Plain Layout
+
+                    noise = np.random.normal(0, angular_noise)
+\end_layout
+
+\begin_layout Plain Layout
+
+                    msg.linear.x = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+                    msg.angular.z = angle / rot_time + noise
+\end_layout
+
+\begin_layout Plain Layout
+
+                    pub.publish(msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+                    rate_node.get_logger().info('[Rotation] Publishing: "%s"'
+ % i)
+\end_layout
+
+\begin_layout Plain Layout
+
+                    rate.sleep()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg.linear.x = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+        msg.angular.z = 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+        pub.publish(msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+        rate_node.get_logger().info('[Stop] Publishing: "%s"' % i)
+\end_layout
+
+\begin_layout Plain Layout
+
+        subprocess.run(['ros2', 'run', 'lab32', 'position', '--ros-args',
+ '-p', f'file_name:={file_name}'])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    except KeyboardInterrupt:
+\end_layout
+
+\begin_layout Plain Layout
+
+        pass
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    rate_node.destroy_node()
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.shutdown()
+\end_layout
+
+\begin_layout Plain Layout
+
+    t.join()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Reset simulation at beginning of each turn.
+ Using rate_node.declare_parameter to declare linear noise, angular noise
+ and file name to record the position.
+ At each time sending twsit, using numpy to calculate noise randomly.
+ Only record position when the robot finshied each iteration and stopped.
+ 
+\end_layout
+
+\begin_layout Standard
+For position
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+import time
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import rclpy
+\end_layout
+
+\begin_layout Plain Layout
+
+from rclpy.node import Node
+\end_layout
+
+\begin_layout Plain Layout
+
+from nav_msgs.msg import Odometry
+\end_layout
+
+\begin_layout Plain Layout
+
+import threading
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+class OdomSubscriber(Node):
+\end_layout
+
+\begin_layout Plain Layout
+
+    def __init__(self):
+\end_layout
+
+\begin_layout Plain Layout
+
+        super().__init__('odom_subscriber')
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.subscription = self.create_subscription(
+\end_layout
+
+\begin_layout Plain Layout
+
+            Odometry,
+\end_layout
+
+\begin_layout Plain Layout
+
+            'odom',
+\end_layout
+
+\begin_layout Plain Layout
+
+            self.listener_callback,
+\end_layout
+
+\begin_layout Plain Layout
+
+            10)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.declare_parameter('file_name', 'position.txt')
+\end_layout
+
+\begin_layout Plain Layout
+
+        self.file_name = self.get_parameter('file_name').get_parameter_value().strin
+g_value
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    def listener_callback(self, msg):
+\end_layout
+
+\begin_layout Plain Layout
+
+        position = msg.pose.pose.position
+\end_layout
+
+\begin_layout Plain Layout
+
+        with open(self.file_name, 'a') as f:
+\end_layout
+
+\begin_layout Plain Layout
+
+            f.write(f'{float(position.x)} {float(position.y)}
+\backslash
+n')
+\end_layout
+
+\begin_layout Plain Layout
+
+        rclpy.shutdown()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(args=None):
+\end_layout
+
+\begin_layout Plain Layout
+
+    rclpy.init(args=args)
+\end_layout
+
+\begin_layout Plain Layout
+
+    odom_subscriber = OdomSubscriber()
+\end_layout
+
+\begin_layout Plain Layout
+
+    t = threading.Thread(target=rclpy.spin, args=(odom_subscriber,), daemon=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    t.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+    time.sleep(0.2)
+\end_layout
+
+\begin_layout Plain Layout
+
+    os._exit(0)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using parameter input as file name, append mode to add each input as new
+ line of each turn's final position.
+\end_layout
+
+\begin_layout Standard
+Change setup.py
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+entry_points={
+\end_layout
+
+\begin_layout Plain Layout
+
+        'console_scripts': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            'move = lab32.noise:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'position = lab32.position:main',
+\end_layout
+
+\begin_layout Plain Layout
+
+        ]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Build project by
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+colcon build --packages-select lab32
+\end_layout
+
+\begin_layout Plain Layout
+
+source install/setup.bash
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I'm using a python file to run simulation in different noise level, totally
+ 30 turns.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=no language,language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import subprocess
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for _ in range(10):
+\end_layout
+
+\begin_layout Plain Layout
+
+    # run without noise
+\end_layout
+
+\begin_layout Plain Layout
+
+    subprocess.run(["ros2", "run", "lab32", "move", "--ros-args", "-p", "l_noise:
+=0.0", "-p", "a_noise:=0.0", "-p", "file_name:=p1.txt"])
+\end_layout
+
+\begin_layout Plain Layout
+
+    # run with low noise
+\end_layout
+
+\begin_layout Plain Layout
+
+    subprocess.run(["ros2", "run", "lab32", "move", "--ros-args", "-p", "l_noise:
+=0.002", "-p", "a_noise:=0.001", "-p", "file_name:=p2.txt"])
+\end_layout
+
+\begin_layout Plain Layout
+
+    # run with high noise
+\end_layout
+
+\begin_layout Plain Layout
+
+    subprocess.run(["ros2", "run", "lab32", "move", "--ros-args", "-p", "l_noise:
+=0.02", "-p", "a_noise:=0.01", "-p", "file_name:=p3.txt"])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Start simulation
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ros2 launch turtlebot3_gazebo empty_world.launch.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then we get 3 ouput file record position at different noise levels.
+\end_layout
+
+\begin_layout Standard
+Without noise
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+-0.07379741707830968 -0.005353579744299584
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.09837604542784895 0.04046680427700269
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.09998493690126975 0.039084283123288974
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.09067430022097647 -0.006590720589686069
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.056109222267952785 -0.004125044065856912
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.11718038979564332 0.03818406308235062
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.07407609777581077 0.0376400441594107
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.1171306425950193 -0.006453745232904999
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.09054764641489077 -0.020189422754572528
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.11526432770937795 0.03960652185335872
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With linear 0.002, angular 0.001
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+-0.08198766225546675 0.05629483143054131
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.0930786812722532 -0.023340952372412252
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.08502499757644746 0.02668814762790972
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.06808187611482151 -0.0027894148811806263
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.07092270258865978 -0.01882176316745092
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.10015868913854332 -0.002877870861875369
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.15572164463562055 0.014292587828699119
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.09376989602721506 0.03569018505915051
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.12468995489578315 0.002257994534304147
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.07993997799210165 0.003451665922614623
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With linear 0.02, angular 0.01
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+-0.12356562189431151 0.04766069078142874
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.11720737878024452 0.02482205515361496
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.23691176549448564 0.04915883750002336
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.18257528463088027 0.1794309597282791
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.06804106917224081 -0.03366920421342969
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.17532397965288588 0.12699797425240802
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.24430642924171028 0.11782102586375498
+\end_layout
+
+\begin_layout Plain Layout
+
+0.03308035010122279 -0.010423388365407172
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.24901366347232023 0.017661109019843843
+\end_layout
+
+\begin_layout Plain Layout
+
+-0.09769253613025125 0.09662218913993334
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task 3-3:
+\end_layout
+
+\begin_layout Subsection
+Code to calculate the covariance matrix from the final locations
+\end_layout
+
+\begin_layout Standard
+Using numpy read data from txt file, and calculate them
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=no language,language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+data1 = np.loadtxt('p1.txt')
+\end_layout
+
+\begin_layout Plain Layout
+
+data2 = np.loadtxt('p2.txt')
+\end_layout
+
+\begin_layout Plain Layout
+
+data3 = np.loadtxt('p3.txt')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+data1_cov = np.cov(data1, rowvar=False)
+\end_layout
+
+\begin_layout Plain Layout
+
+data2_cov = np.cov(data2, rowvar=False)
+\end_layout
+
+\begin_layout Plain Layout
+
+data3_cov = np.cov(data3, rowvar=False)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+data1_std_devs = np.sqrt(np.diag(data1_cov))
+\end_layout
+
+\begin_layout Plain Layout
+
+data2_std_devs = np.sqrt(np.diag(data2_cov))
+\end_layout
+
+\begin_layout Plain Layout
+
+data3_std_devs = np.sqrt(np.diag(data3_cov))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p1 cov: 
+\backslash
+n", np.cov(data1, rowvar=False))
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p2 cov: 
+\backslash
+n", np.cov(data2, rowvar=False))
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p3 cov: 
+\backslash
+n", np.cov(data3, rowvar=False))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p1 std devs: ", data1_std_devs)
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p2 std devs: ", data2_std_devs)
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p3 std devs: ", data3_std_devs)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Calculate the standard deviations for each column
+\end_layout
+
+\begin_layout Plain Layout
+
+std_dev1_x = np.std(data1[:, 0])
+\end_layout
+
+\begin_layout Plain Layout
+
+std_dev1_y = np.std(data1[:, 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+std_dev2_x = np.std(data2[:, 0])
+\end_layout
+
+\begin_layout Plain Layout
+
+std_dev2_y = np.std(data2[:, 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+std_dev3_x = np.std(data3[:, 0])
+\end_layout
+
+\begin_layout Plain Layout
+
+std_dev3_y = np.std(data3[:, 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Print the standard deviations
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p1 std dev x: ", std_dev1_x)
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p1 std dev y: ", std_dev1_y)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p2 std dev x: ", std_dev2_x)
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p2 std dev y: ", std_dev2_y)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p3 std dev x: ", std_dev3_x)
+\end_layout
+
+\begin_layout Plain Layout
+
+print("p3 std dev y: ", std_dev3_y)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+np.loadtxt load data into a 2d array.
+ 
+\end_layout
+
+\begin_layout Standard
+np.cov(data1, rowvar=False) calculates the covariance of the data1 data set.
+ Each column represents a variable, and rows contain observations.
+\end_layout
+
+\begin_layout Standard
+np.std(data1[:, 0]) calculates the standard deviation of the first variable
+ (column) in the data1 data set.
+\end_layout
+
+\begin_layout Subsection
+The covariance matrix calculated for each experiments
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+p1 cov: 
+\end_layout
+
+\begin_layout Plain Layout
+
+ [[ 0.00042651 -0.00018885]
+\end_layout
+
+\begin_layout Plain Layout
+
+ [-0.00018885  0.0006476 ]]
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 cov: 
+\end_layout
+
+\begin_layout Plain Layout
+
+ [[ 7.11023996e-04 -4.08749897e-05]
+\end_layout
+
+\begin_layout Plain Layout
+
+ [-4.08749897e-05  6.07364235e-04]]
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 cov: 
+\end_layout
+
+\begin_layout Plain Layout
+
+ [[ 0.00806129 -0.0029002 ]
+\end_layout
+
+\begin_layout Plain Layout
+
+ [-0.0029002   0.00449381]]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For sanity check
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+p1 std devs:  [0.02065212 0.02544799]
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 std devs:  [0.02666503 0.02464476]
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 std devs:  [0.08978469 0.0670359 ]
+\end_layout
+
+\begin_layout Plain Layout
+
+p1 std dev x:  0.01959231920925525
+\end_layout
+
+\begin_layout Plain Layout
+
+p1 std dev y:  0.024142084781585523
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 std dev x:  0.025296671648003848
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 std dev y:  0.023380072953812857
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 std dev x:  0.0851772368621729
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 std dev y:  0.06359583861249941
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Discuss possible ways to make scatter smaller for a given level of noise
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Standard
+Using closed-loop control
+\end_layout
+
+\begin_layout Standard
+Using filter like kalman filter
+\end_layout
+
+\begin_layout Standard
+Dynamic calibration
+\end_layout
+
+\end_body
+\end_document
